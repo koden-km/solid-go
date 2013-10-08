@@ -5,7 +5,8 @@ import (
 )
 
 type Material struct {
-	matter Matter
-	color RGBA
+	color    RGBA
+	matter   Matter
+	density  float
 	friction float
 }
