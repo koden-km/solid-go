@@ -9,5 +9,5 @@ type Quaternion struct {
 }
 
 func (q Quaternion) String() string {
-	return fmt.Sprintf("q{%#v,%#v,%#v,%#v}", q.X, q.Y, q.Z, q.W)
+	return fmt.Sprintf("%#v", q)
 }

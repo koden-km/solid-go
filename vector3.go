@@ -9,5 +9,5 @@ type Vector3 struct {
 }
 
 func (v Vector3) String() string {
-	return fmt.Sprintf("v3{%#v,%#v,%#v}", v.X, v.Y, v.Z)
+	return fmt.Sprintf("%#v", v)
 }

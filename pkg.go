@@ -2,5 +2,5 @@
 package solid
 
 func PkgInfo() string {
-	return "Solid Engine Library"
+	return "Solid Engine 0.0.1"
 }
