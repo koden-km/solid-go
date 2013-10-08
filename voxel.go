@@ -19,37 +19,38 @@ import (
 	"fmt"
 )
 
-// TODO: left shift these to pack bits
-const (
-	AttributeMaskNormal     = 0x1F
-	AttributeMaskBakedLight = 0x1FFFE0
-
-	AttributeOffsetNormal     = 0
-	AttributeOffsetBakedLight = 5
-)
-
 type Voxel struct {
 	material   *Material
-	attributes uint32
+	attributes BitField32
 }
+
+const (
+	attributeMaskNormal     = 0x1F
+	attributeMaskBakedLight = 0x1FFFE0
+
+	attributeOffsetNormal     = 0
+	attributeOffsetBakedLight = 5
+)
 
 func (v *Voxel) String() string {
 	return fmt.Sprintf("%#v", v)
 }
 
-func (v *Voxel) extractAttributeUint(mask, offset uint32) uint32 {
-	return (v.attributes & mask) >> offset
-}
+// Moving this to bitfield32.go
+// func (v *Voxel) extractAttributeUint(mask, offset uint32) uint32 {
+// 	return (v.attributes & mask) >> offset
+// }
 
-func (v *Voxel) extractAttributeInt(mask, offset uint32) int32 {
-	return int32(v.extractAttributeUint(mask, offset))
-}
+// Moving this to bitfield32.go
+// func (v *Voxel) extractAttributeInt(mask, offset uint32) int32 {
+// 	return int32(v.extractAttributeUint(mask, offset))
+// }
 
 func (v *Voxel) Normal() Vector3 {
 	return Vector3{0, 1, 0}
 
 	// Something like this switch below? probably better to just have a static array of vectors and return based on index...
-	// maybe even wrap up the attribute lookups? v.extractAttributeUint(AttributeMaskNormal, AttributeOffsetNormal)
+	// maybe even wrap up the attribute lookups? v.attributes.GetUint(attributeMaskNormal, attributeOffsetNormal)
 	//
 	// switch v.attributes & AttributeNormal {
 	// case 0:
