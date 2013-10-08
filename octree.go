@@ -50,7 +50,7 @@ func (t *Octree) updateAverageColor() {
 	// loop and do each in a go routine (concurrency)
 }
 
-func (t *Octree) SetAtIndex(index LeafPos, voxel Voxel) {
+func (t *Octree) SetAtIndex(index LeafPos, voxel *Voxel) {
 	t.createLeaves()
 	t.leaves[index].voxel = voxel
 	go t.updateAverageColor()
@@ -61,18 +61,19 @@ func (t *Octree) indexFromPosition(myPos Vector3, atPos Vector3) LeafPos {
 }
 
 // position is passed down during traversal to save storage memory, it doesnt need to exist at every node.
-func (t *Octree) SetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32, maxDepth uint32, voxel Voxel) {
+func (t *Octree) SetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32, maxDepth uint32, voxel *Voxel) {
 	var index = t.indexFromPosition(myPos, atPos)
 	if currentDepth != maxDepth || myPos == atPos {
 		t.SetAtIndex(index, voxel)
 		return
 	}
 
-	var leafPos = atPos - myPos // not sure if correct. trying to get the local offset or something...
-	t.leaves[index].SetAtPosition(leafPos, atPos, currentDepth+1, maxDepth, voxel)
+	// TODO: finish vector lib
+	// var leafPos = atPos.Subtract(myPos) // not sure if correct. trying to get the local offset or something...
+	// t.leaves[index].SetAtPosition(leafPos, atPos, currentDepth+1, maxDepth, voxel)
 }
 
 // return on a channel?
-func (t *Octree) GetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32, maxDepth uint32, voxel Voxel) {
+func (t *Octree) GetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32, maxDepth uint32, voxel *Voxel) {
 	// ...
 }

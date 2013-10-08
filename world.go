@@ -9,10 +9,10 @@ type World struct {
 }
 
 // use a channel for return?
-func (w *World) GetVoxelAtPosition(worldPos Vector3, currentDepth uint32, maxDepth uint32) Voxel {
-	// ...
-}
+// func (w *World) GetVoxelAtPosition(worldPos Vector3, currentDepth uint32, maxDepth uint32) Voxel {
+// 	// ...
+// }
 
-func (w *World) SetVoxelAtPosition(worldPos Vector3, currentDepth uint32, maxDepth uint32, voxel Voxel) {
-	// ...
-}
+// func (w *World) SetVoxelAtPosition(worldPos Vector3, currentDepth uint32, maxDepth uint32, voxel Voxel) {
+// 	// ...
+// }

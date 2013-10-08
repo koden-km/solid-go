@@ -1,12 +1,13 @@
 package solid
 
 import (
-	"image/RGBA"
+	"image/Color"
 )
 
 type Material struct {
-	color    RGBA
+	name     string
+	color    color.RGBA
 	matter   Matter
-	density  float
-	friction float
+	density  float32
+	friction float32
 }
