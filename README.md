@@ -9,7 +9,7 @@ package main
 
 import (
     "fmt"
-    "github.com/koden-km/solid-go"
+    "github.com/koden-km/solid-go/solid"
 )
 
 func main() {

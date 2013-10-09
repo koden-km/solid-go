@@ -32,6 +32,12 @@ const (
 	attributeOffsetBakedLight = 5
 )
 
+//var SurfaceNormalTable []Vector3 = {
+//	Vector3{0, 1, 0},		// Up
+//	Vector3{0, -1, 0},		// Down
+//	// TODO: add the rest...
+//}
+
 func (v *Voxel) String() string {
 	return fmt.Sprintf("%#v", v)
 }
@@ -49,23 +55,5 @@ func (v *Voxel) String() string {
 func (v *Voxel) Normal() Vector3 {
 	return Vector3{0, 1, 0}
 
-	// Something like this switch below? probably better to just have a static array of vectors and return based on index...
-	// maybe even wrap up the attribute lookups? v.attributes.GetUint(attributeMaskNormal, attributeOffsetNormal)
-	//
-	// switch v.attributes & AttributeNormal {
-	// case 0:
-	// 	return Vector3{0, 1, 0}
-	// case 1:
-	// 	return Vector3{0, -1, 0}
-	// case 2:
-	// 	return Vector3{0, 0, 1}
-	// case 3:
-	// 	return Vector3{0, 0, -1}
-	// case 4:
-	// 	return Vector3{1, 0, 0}
-	// case 5:
-	// 	return Vector3{-1, 0, 0}
-	// case 6:
-	// ...
-	// }
+	// return SurfaceNormalTable[v.attributes.GetUint(attributeMaskNormal, attributeOffsetNormal)]
 }
