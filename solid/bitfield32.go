@@ -1,5 +1,8 @@
 package solid
 
+// TODO:
+// Probably just use functions on uint16's and uint32's instead of this custom type.
+
 // Packed bitfield
 type BitField32 uint32
 

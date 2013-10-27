@@ -4,6 +4,8 @@ package solid
 // Should i keep a pointer to the actual material? ~64 bit pointer vs a ~16 bit index into material list (memory usage vs time to lookup).
 // The material will be persisted as the numberic index into the material list.
 
+// Normals could be calculated by looking at adjacent voxels, but then nearly all surfaces would be flat.
+
 // Attributes:
 // - 5 bits = Surface normal type. 32 possible values and only need 26 options for really basic normals?
 //            Something like this:
@@ -20,16 +22,16 @@ import (
 )
 
 type Voxel struct {
-	material   *Material
-	attributes BitField32
+	material   uint16
+	attributes uint16
 }
 
 const (
-	attributeMaskNormal     = 0x1F
-	attributeMaskBakedLight = 0x1FFFE0
+	attributeMaskNormal     = 0x1F			// 0000 0000 0001 1111
+	//attributeMaskBakedLight = 0xFFFE0		// 0000 0000 0000 0000
 
 	attributeOffsetNormal     = 0
-	attributeOffsetBakedLight = 5
+	//attributeOffsetBakedLight = 5
 )
 
 //var SurfaceNormalTable []Vector3 = {
@@ -42,18 +44,21 @@ func (v *Voxel) String() string {
 	return fmt.Sprintf("%#v", v)
 }
 
-// Moving this to bitfield32.go
-// func (v *Voxel) extractAttributeUint(mask, offset uint32) uint32 {
-// 	return (v.attributes & mask) >> offset
-// }
+func (v *Voxel) MaterialIndex() uint16 {
+	return v.materia;
+}
 
-// Moving this to bitfield32.go
-// func (v *Voxel) extractAttributeInt(mask, offset uint32) int32 {
-// 	return int32(v.extractAttributeUint(mask, offset))
-// }
+func (v *Voxel) Material() *Material {
+	// return MaterialTable[v.material]
+	return nil;
+}
+
+func (v *Voxel) Attributes() uint16 {
+	return v.attributes
+}
 
 func (v *Voxel) Normal() Vector3 {
 	return Vector3{0, 1, 0}
 
-	// return SurfaceNormalTable[v.attributes.GetUint(attributeMaskNormal, attributeOffsetNormal)]
+	// return SurfaceNormalTable[GetUint32(v.attributes, attributeMaskNormal, attributeOffsetNormal)]
 }
