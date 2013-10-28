@@ -15,7 +15,10 @@ package solid
 //            [diagonal roll] Up+East, Down+East, Down+West, Up+West,
 //            [diagonal pitch+yaw+roll 1] Up+North+East, Down+North+East, Down+South+West, Up+South+West.
 //            [diagonal pitch+yaw+roll 2] Up+North+West, Down+North+West, Down+South+East, Up+South+East.
-// - backed light colour and shadow?
+// - baked light colour and shadow?
+// - 6 bits = Attached/Bonded voxels/atoms. Bonded with: Up, Down, North, South, East, West.
+//            How larger objects are made from small atoms with varing materials.
+//            Actually might just make this a regular uint8 var on the type. The other 2 bits could be used for something though. Also aim for memory alignment?
 
 import (
 	"fmt"
@@ -24,6 +27,7 @@ import (
 type Voxel struct {
 	material   uint16
 	attributes uint16
+	//attached   uint8		// Bits signalling the bonded attachment to nearby voxel/atoms in each direction (U,D,N,S,E,W).
 }
 
 const (
