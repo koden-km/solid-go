@@ -19,6 +19,8 @@ package solid
 // - 6 bits = Attached/Bonded voxels/atoms. Bonded with: Up, Down, North, South, East, West.
 //            How larger objects are made from small atoms with varing materials.
 //            Actually might just make this a regular uint8 var on the type. The other 2 bits could be used for something though. Also aim for memory alignment?
+//            Or maybe i should make this a ~5 bit index lookup like surface normal. Because the bonding should also support diagonal angles?
+//            A bonding strength (for breaking appart) might be needed also. But that could be based on the material type itself?
 
 import (
 	"fmt"
