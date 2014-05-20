@@ -1,5 +1,7 @@
 package solid
 
+// Voxels are the Octree leaf payload.
+
 // Material:
 // Should i keep a pointer to the actual material? ~64 bit pointer vs a ~16 bit index into material list (memory usage vs time to lookup).
 // The material will be persisted as the numberic index into the material list.
@@ -27,11 +29,13 @@ import (
 )
 
 type Voxel struct {
-	material   uint16
-	attributes uint16
+	material   uint16       // Index into material lookup table.
+	attributes uint16       // Bitfield flags for this voxel. Using bitfields to pack data and keep memory use as low as possible.
 	//attached   uint8		// Bits signalling the bonded attachment to nearby voxel/atoms in each direction (U,D,N,S,E,W).
 }
 
+// Attribute bitfield packing info.
+// NOTE: If there are not many attributes needed, i may just use a simple type in the Voxel.
 const (
 	attributeMaskNormal     = 0x1F			// 0000 0000 0001 1111
 	//attributeMaskBakedLight = 0xFFFE0		// 0000 0000 0000 0000
