@@ -51,7 +51,7 @@ func (v *Voxel) String() string {
 }
 
 func (v *Voxel) MaterialIndex() uint16 {
-	return v.materia;
+	return v.Material;
 }
 
 func (v *Voxel) Material() *Material {

@@ -7,24 +7,32 @@ package solid
 
 // Get a packed value from the bitfield at the masked offset.
 func GetUInt16(bitfield, mask, offset uint16) uint16 {
-	value := bitfield & (mask << offset)
-	return value >> offset
+	// TODO
+	return 0
+	// value := bitfield & (mask << offset)
+	// return value >> offset
 }
 
 // Return the bitfield with the new value packed in at the masked offset.
 func SetUint16(value, bitfield, mask, offset uint16) uint16 {
-	bitfield &= ~(mask << offset)
-	return bitfield | (value << offset)
+	// TODO
+	return 0
+	// bitfield &= ~(mask << offset)
+	// return bitfield | (value << offset)
 }
 
 // Get a packed value from the bitfield at the masked offset.
 func GetUInt32(bitfield, mask, offset uint32) uint32 {
-	value := bitfield & (mask << offset)
-	return value >> offset
+	// TODO
+	return 0
+	// value := bitfield & (mask << offset)
+	// return value >> offset
 }
 
 // Return the bitfield with the new value packed in at the masked offset.
 func SetUint32(value, bitfield, mask, offset uint32) uint32 {
-	bitfield &= ~(mask << offset)
-	return bitfield | (value << offset)
+	// TODO
+	return 0
+	// bitfield &= ~(mask << offset)
+	// return bitfield | (value << offset)
 }
