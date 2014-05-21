@@ -2,11 +2,11 @@ package solid
 
 import (
 	"fmt"
+	//"image/Color"
 )
 
 type LeafPos uint32
 
-// Not sure if the leaves will be physically in this order!
 const (
 	LeafPosUpperNorthEast LeafPos = iota
 	LeafPosUpperNorthWest
@@ -21,8 +21,8 @@ const (
 // Octree data structure.
 type Octree struct {
 	leaves *[8]Octree
-	// averageColor RGBA    // not sure if this should be stored always (faster, more memory), or just looked up when needed (slower, less memory)
 	voxel *Voxel
+	// averageColor color.RGBA    // Average color of child voxel materials. TODO: Not sure if this should be stored always (faster, more memory), or just looked up when needed (slower, less memory)
 }
 
 // Create new Octree.
@@ -57,10 +57,10 @@ func (t *Octree) SetAtIndex(index LeafPos, voxel *Voxel) {
 }
 
 func (t *Octree) indexFromPosition(myPos Vector3, atPos Vector3) LeafPos {
-	return LeafPosUpperNorthEast // to do... calc index using position offset to get direction
+	return LeafPosUpperNorthEast // TODO: Calc index using position offset to get direction
 }
 
-// position is passed down during traversal to save storage memory, it doesnt need to exist at every node.
+// Position is passed down during traversal to save storage memory, it doesnt need to exist at every node.
 func (t *Octree) SetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32, maxDepth uint32, voxel *Voxel) {
 	var index = t.indexFromPosition(myPos, atPos)
 	if currentDepth != maxDepth || myPos == atPos {
@@ -68,12 +68,12 @@ func (t *Octree) SetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32
 		return
 	}
 
-	// TODO: finish vector lib
-	// var leafPos = atPos.Subtract(myPos) // not sure if correct. trying to get the local offset or something...
-	// t.leaves[index].SetAtPosition(leafPos, atPos, currentDepth+1, maxDepth, voxel)
+	// TODO: Finish vector lib
+	// var leafPos = atPos.Subtract(myPos)  // TODO: Not sure if correct. trying to get the local offset or something...
+	// t.leaves[index].SetAtPosition(leafPos, atPos, currentDepth + 1, maxDepth, voxel)
 }
 
-// return on a channel?
+// TODO: Return on a channel?
 func (t *Octree) GetAtPosition(myPos Vector3, atPos Vector3, currentDepth uint32, maxDepth uint32, voxel *Voxel) {
 	// ...
 }
