@@ -1,6 +1,7 @@
 package solid
 
 // TODO:
+// Possible bit packing lib: https://github.com/joshlf13/gopack
 // Move all this into its own (packedbits) package?
 // Check that these bit field operations are correct (write tests!)
 // Will need little and big endian versions of these?

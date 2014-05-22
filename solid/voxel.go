@@ -9,6 +9,7 @@ package solid
 // Normals could be calculated by looking at adjacent voxels, but then nearly all surfaces would be flat.
 
 // Attributes:
+// Possible bit packing lib: https://github.com/joshlf13/gopack
 // - 5 bits = Surface normal type. 32 possible values and only need 26 options for really basic normals?
 //            Something like this:
 //            [straight] Up, Down, North, South, East, West,
